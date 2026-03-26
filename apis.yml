@@ -1,0 +1,28 @@
+aid: open-container-initiative
+name: Open Container Initiative
+description: >-
+  The Open Container Initiative develops open standards for container formats and runtimes.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Containers
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/open-container-initiative/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: open-container-initiative:open-container-initiative
+    name: Open Container Initiative
+    description: >-
+      The Open Container Initiative develops open standards for container formats and runtimes.
+    humanURL: https://github.com/api-evangelist/open-container-initiative
+    tags:
+      - Containers
+    properties: []
+common:
+  - type: Website
+    url: https://github.com/api-evangelist/open-container-initiative
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
