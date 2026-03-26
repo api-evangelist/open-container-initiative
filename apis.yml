@@ -1,11 +1,15 @@
 aid: open-container-initiative
 name: Open Container Initiative
 description: >-
-  The Open Container Initiative develops open standards for container formats and runtimes.
+  The Open Container Initiative (OCI) is an open governance structure for creating open industry standards around container formats and runtimes, hosted under the Linux Foundation.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
+  - Standards
+  - Open Source
+  - OCI
+  - Cloud Native
 url: >-
   https://raw.githubusercontent.com/api-evangelist/open-container-initiative/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +19,28 @@ apis:
   - aid: open-container-initiative:open-container-initiative
     name: Open Container Initiative
     description: >-
-      The Open Container Initiative develops open standards for container formats and runtimes.
-    humanURL: https://github.com/api-evangelist/open-container-initiative
+      The Open Container Initiative (OCI) is an open governance structure for creating open industry standards around container formats and runtimes, including the Runtime Specification, Image Specification, and Distribution Specification.
+    humanURL: https://opencontainers.org/
     tags:
       - Containers
-    properties: []
+      - Standards
+      - OCI
+    properties:
+      - type: Documentation
+        url: https://opencontainers.org/about/overview/
+      - type: Getting Started
+        url: https://opencontainers.org/community/overview/
 common:
   - type: Website
-    url: https://github.com/api-evangelist/open-container-initiative
+    url: https://opencontainers.org/
+  - type: GitHub Organization
+    url: https://github.com/opencontainers
+  - type: Blog
+    url: https://opencontainers.org/posts/
+  - type: Community
+    url: https://opencontainers.org/community/overview/
+  - type: FAQ
+    url: https://opencontainers.org/faq/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
