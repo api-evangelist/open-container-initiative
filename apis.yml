@@ -5,11 +5,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Containers
-  - Standards
-  - Open Source
-  - OCI
   - Cloud Native
+  - Containers
+  - OCI
+  - Open Source
+  - Standards
 url: >-
   https://raw.githubusercontent.com/api-evangelist/open-container-initiative/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -23,8 +23,8 @@ apis:
     humanURL: https://opencontainers.org/
     tags:
       - Containers
-      - Standards
       - OCI
+      - Standards
     properties:
       - type: Documentation
         url: https://opencontainers.org/about/overview/
