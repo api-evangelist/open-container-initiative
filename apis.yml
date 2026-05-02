@@ -13,7 +13,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/open-container-initiative/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-03-26'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: open-container-initiative:open-container-initiative
@@ -30,6 +30,8 @@ apis:
         url: https://opencontainers.org/about/overview/
       - type: Getting Started
         url: https://opencontainers.org/community/overview/
+      - type: OpenAPI
+        url: openapi/open-container-initiative-openapi.yml
 common:
   - type: Website
     url: https://opencontainers.org/
