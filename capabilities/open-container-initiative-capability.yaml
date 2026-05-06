@@ -1,0 +1,498 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OCI Distribution Specification
+  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container
+    images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests,
+    tags, and referrers under the /v2/ namespace.
+  tags:
+  - Open
+  - Container
+  - Initiative
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: open-container-initiative
+    baseUri: https://registry.example.com
+    description: OCI Distribution Specification HTTP API.
+    resources:
+    - name: v2
+      path: /v2/
+      operations:
+      - name: checkversion
+        method: GET
+        description: API version check
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-blobs-digest
+      path: /v2/{name}/blobs/{digest}
+      operations:
+      - name: getblob
+        method: GET
+        description: Retrieve a blob
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteblob
+        method: DELETE
+        description: Delete a blob
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-blobs-uploads
+      path: /v2/{name}/blobs/uploads/
+      operations:
+      - name: initiateblobupload
+        method: POST
+        description: Initiate a blob upload
+        inputParameters:
+        - name: digest
+          in: query
+          type: string
+          description: When supplied, performs a monolithic upload with this digest.
+        - name: mount
+          in: query
+          type: string
+          description: Digest of a blob to mount from another repository.
+        - name: from
+          in: query
+          type: string
+          description: Source repository name to mount the blob from.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-blobs-uploads-reference
+      path: /v2/{name}/blobs/uploads/{reference}
+      operations:
+      - name: getblobuploadstatus
+        method: GET
+        description: Get blob upload status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: uploadblobchunk
+        method: PATCH
+        description: Upload a blob chunk
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: completeblobupload
+        method: PUT
+        description: Complete a blob upload
+        inputParameters:
+        - name: digest
+          in: query
+          type: string
+          required: true
+          description: The digest of the completed blob.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancelblobupload
+        method: DELETE
+        description: Cancel a blob upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-manifests-reference
+      path: /v2/{name}/manifests/{reference}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Retrieve a manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putmanifest
+        method: PUT
+        description: Push a manifest
+        inputParameters:
+        - name: tag
+          in: query
+          type: array
+          description: Optional tags to assign when pushing by digest.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletemanifest
+        method: DELETE
+        description: Delete a manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-tags-list
+      path: /v2/{name}/tags/list
+      operations:
+      - name: listtags
+        method: GET
+        description: List tags in a repository
+        inputParameters:
+        - name: n
+          in: query
+          type: integer
+          description: Maximum number of tags to return.
+        - name: last
+          in: query
+          type: string
+          description: Tag name to start listing after, for pagination.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-referrers-digest
+      path: /v2/{name}/referrers/{digest}
+      operations:
+      - name: listreferrers
+        method: GET
+        description: List referrers for a manifest
+        inputParameters:
+        - name: artifactType
+          in: query
+          type: string
+          description: Filter referrers by artifact type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: open-container-initiative-rest
+    description: REST adapter for OCI Distribution Specification.
+    resources:
+    - path: /v2/
+      name: checkversion
+      operations:
+      - method: GET
+        name: checkversion
+        description: API version check
+        call: open-container-initiative.checkversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/{digest}
+      name: getblob
+      operations:
+      - method: GET
+        name: getblob
+        description: Retrieve a blob
+        call: open-container-initiative.getblob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/{digest}
+      name: deleteblob
+      operations:
+      - method: DELETE
+        name: deleteblob
+        description: Delete a blob
+        call: open-container-initiative.deleteblob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/uploads/
+      name: initiateblobupload
+      operations:
+      - method: POST
+        name: initiateblobupload
+        description: Initiate a blob upload
+        call: open-container-initiative.initiateblobupload
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/uploads/{reference}
+      name: getblobuploadstatus
+      operations:
+      - method: GET
+        name: getblobuploadstatus
+        description: Get blob upload status
+        call: open-container-initiative.getblobuploadstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/uploads/{reference}
+      name: uploadblobchunk
+      operations:
+      - method: PATCH
+        name: uploadblobchunk
+        description: Upload a blob chunk
+        call: open-container-initiative.uploadblobchunk
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/uploads/{reference}
+      name: completeblobupload
+      operations:
+      - method: PUT
+        name: completeblobupload
+        description: Complete a blob upload
+        call: open-container-initiative.completeblobupload
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/blobs/uploads/{reference}
+      name: cancelblobupload
+      operations:
+      - method: DELETE
+        name: cancelblobupload
+        description: Cancel a blob upload
+        call: open-container-initiative.cancelblobupload
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/manifests/{reference}
+      name: getmanifest
+      operations:
+      - method: GET
+        name: getmanifest
+        description: Retrieve a manifest
+        call: open-container-initiative.getmanifest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/manifests/{reference}
+      name: putmanifest
+      operations:
+      - method: PUT
+        name: putmanifest
+        description: Push a manifest
+        call: open-container-initiative.putmanifest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/manifests/{reference}
+      name: deletemanifest
+      operations:
+      - method: DELETE
+        name: deletemanifest
+        description: Delete a manifest
+        call: open-container-initiative.deletemanifest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/tags/list
+      name: listtags
+      operations:
+      - method: GET
+        name: listtags
+        description: List tags in a repository
+        call: open-container-initiative.listtags
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v2/{name}/referrers/{digest}
+      name: listreferrers
+      operations:
+      - method: GET
+        name: listreferrers
+        description: List referrers for a manifest
+        call: open-container-initiative.listreferrers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: open-container-initiative-mcp
+    transport: http
+    description: MCP adapter for OCI Distribution Specification for AI agent use.
+    tools:
+    - name: checkversion
+      description: API version check
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.checkversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getblob
+      description: Retrieve a blob
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.getblob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteblob
+      description: Delete a blob
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: open-container-initiative.deleteblob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiateblobupload
+      description: Initiate a blob upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: open-container-initiative.initiateblobupload
+      with:
+        digest: tools.digest
+        mount: tools.mount
+        from: tools.from
+      inputParameters:
+      - name: digest
+        type: string
+        description: When supplied, performs a monolithic upload with this digest.
+      - name: mount
+        type: string
+        description: Digest of a blob to mount from another repository.
+      - name: from
+        type: string
+        description: Source repository name to mount the blob from.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getblobuploadstatus
+      description: Get blob upload status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.getblobuploadstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadblobchunk
+      description: Upload a blob chunk
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: open-container-initiative.uploadblobchunk
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: completeblobupload
+      description: Complete a blob upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.completeblobupload
+      with:
+        digest: tools.digest
+      inputParameters:
+      - name: digest
+        type: string
+        description: The digest of the completed blob.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancelblobupload
+      description: Cancel a blob upload
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: open-container-initiative.cancelblobupload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmanifest
+      description: Retrieve a manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.getmanifest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: putmanifest
+      description: Push a manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.putmanifest
+      with:
+        tag: tools.tag
+      inputParameters:
+      - name: tag
+        type: array
+        description: Optional tags to assign when pushing by digest.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletemanifest
+      description: Delete a manifest
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: open-container-initiative.deletemanifest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtags
+      description: List tags in a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.listtags
+      with:
+        n: tools.n
+        last: tools.last
+      inputParameters:
+      - name: n
+        type: integer
+        description: Maximum number of tags to return.
+      - name: last
+        type: string
+        description: Tag name to start listing after, for pagination.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreferrers
+      description: List referrers for a manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.listreferrers
+      with:
+        artifactType: tools.artifactType
+      inputParameters:
+      - name: artifactType
+        type: string
+        description: Filter referrers by artifact type.
+      outputParameters:
+      - type: object
+        mapping: $.
