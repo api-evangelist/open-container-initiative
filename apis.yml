@@ -28,14 +28,14 @@ apis:
     properties:
       - type: Documentation
         url: https://opencontainers.org/about/overview/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://opencontainers.org/community/overview/
       - type: OpenAPI
         url: openapi/open-container-initiative-openapi.yml
 common:
   - type: Website
     url: https://opencontainers.org/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/opencontainers
   - type: Blog
     url: https://opencontainers.org/posts/
