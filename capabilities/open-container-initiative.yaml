@@ -1,22 +1,23 @@
 naftiko: 1.0.0-alpha2
 info:
   label: OCI Distribution Specification
-  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container
-    images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests,
-    tags, and referrers under the /v2/ namespace.
+  description: 'OCI Distribution Specification. 15 operations. Lead operation: API version check. Self-contained Naftiko capability
+    covering one Open Container Initiative business surface.'
   tags:
-  - Open
-  - Container
-  - Initiative
-  - API
-  created: '2026-05-06'
-  modified: '2026-05-06'
+  - Open Container Initiative
+  - OCI Distribution Specification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPEN_CONTAINER_INITIATIVE_API_KEY: OPEN_CONTAINER_INITIATIVE_API_KEY
 capability:
   consumes:
   - type: http
     namespace: open-container-initiative
-    baseUri: https://registry.example.com
-    description: OCI Distribution Specification HTTP API.
+    baseUri: https://{registry}
+    description: OCI Distribution Specification business capability. Self-contained, no shared references.
     resources:
     - name: v2
       path: /v2/
@@ -29,31 +30,17 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: v2-name-blobs-digest
-      path: /v2/{name}/blobs/{digest}
-      operations:
-      - name: getblob
-        method: GET
-        description: Retrieve a blob
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
-      - name: deleteblob
-        method: DELETE
-        description: Delete a blob
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
     - name: v2-name-blobs-uploads
       path: /v2/{name}/blobs/uploads/
       operations:
       - name: initiateblobupload
         method: POST
         description: Initiate a blob upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
         inputParameters:
         - name: digest
           in: query
@@ -67,11 +54,6 @@ capability:
           in: query
           type: string
           description: Source repository name to mount the blob from.
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
     - name: v2-name-blobs-uploads-reference
       path: /v2/{name}/blobs/uploads/{reference}
       operations:
@@ -94,20 +76,47 @@ capability:
       - name: completeblobupload
         method: PUT
         description: Complete a blob upload
-        inputParameters:
-        - name: digest
-          in: query
-          type: string
-          required: true
-          description: The digest of the completed blob.
         outputRawFormat: json
         outputParameters:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: digest
+          in: query
+          type: string
+          description: The digest of the completed blob.
+          required: true
       - name: cancelblobupload
         method: DELETE
         description: Cancel a blob upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-name-blobs-digest
+      path: /v2/{name}/blobs/{digest}
+      operations:
+      - name: getblob
+        method: GET
+        description: Retrieve a blob
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: headblob
+        method: HEAD
+        description: Check whether a blob exists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteblob
+        method: DELETE
+        description: Delete a blob
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -124,42 +133,30 @@ capability:
         - name: result
           type: object
           value: $.
+      - name: headmanifest
+        method: HEAD
+        description: Check whether a manifest exists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
       - name: putmanifest
         method: PUT
         description: Push a manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
         inputParameters:
         - name: tag
           in: query
           type: array
           description: Optional tags to assign when pushing by digest.
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
       - name: deletemanifest
         method: DELETE
         description: Delete a manifest
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
-    - name: v2-name-tags-list
-      path: /v2/{name}/tags/list
-      operations:
-      - name: listtags
-        method: GET
-        description: List tags in a repository
-        inputParameters:
-        - name: n
-          in: query
-          type: integer
-          description: Maximum number of tags to return.
-        - name: last
-          in: query
-          type: string
-          description: Tag name to start listing after, for pagination.
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -171,24 +168,46 @@ capability:
       - name: listreferrers
         method: GET
         description: List referrers for a manifest
-        inputParameters:
-        - name: artifactType
-          in: query
-          type: string
-          description: Filter referrers by artifact type.
         outputRawFormat: json
         outputParameters:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: artifactType
+          in: query
+          type: string
+          description: Filter referrers by artifact type.
+    - name: v2-name-tags-list
+      path: /v2/{name}/tags/list
+      operations:
+      - name: listtags
+        method: GET
+        description: List tags in a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: n
+          in: query
+          type: integer
+          description: Maximum number of tags to return.
+        - name: last
+          in: query
+          type: string
+          description: Tag name to start listing after, for pagination.
   exposes:
   - type: rest
-    port: 8080
     namespace: open-container-initiative-rest
-    description: REST adapter for OCI Distribution Specification.
+    port: 8080
+    description: REST adapter for OCI Distribution Specification. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
     resources:
-    - path: /v2/
-      name: checkversion
+    - path: /v1/v2
+      name: v2
+      description: REST surface for v2.
       operations:
       - method: GET
         name: checkversion
@@ -197,38 +216,24 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/blobs/{digest}
-      name: getblob
-      operations:
-      - method: GET
-        name: getblob
-        description: Retrieve a blob
-        call: open-container-initiative.getblob
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v2/{name}/blobs/{digest}
-      name: deleteblob
-      operations:
-      - method: DELETE
-        name: deleteblob
-        description: Delete a blob
-        call: open-container-initiative.deleteblob
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v2/{name}/blobs/uploads/
-      name: initiateblobupload
+    - path: /v1/v2/{name}/blobs/uploads
+      name: v2-name-blobs-uploads
+      description: REST surface for v2-name-blobs-uploads.
       operations:
       - method: POST
         name: initiateblobupload
         description: Initiate a blob upload
         call: open-container-initiative.initiateblobupload
+        with:
+          digest: rest.digest
+          mount: rest.mount
+          from: rest.from
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/blobs/uploads/{reference}
-      name: getblobuploadstatus
+    - path: /v1/v2/{name}/blobs/uploads/{reference}
+      name: v2-name-blobs-uploads-reference
+      description: REST surface for v2-name-blobs-uploads-reference.
       operations:
       - method: GET
         name: getblobuploadstatus
@@ -237,9 +242,6 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/blobs/uploads/{reference}
-      name: uploadblobchunk
-      operations:
       - method: PATCH
         name: uploadblobchunk
         description: Upload a blob chunk
@@ -247,19 +249,15 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/blobs/uploads/{reference}
-      name: completeblobupload
-      operations:
       - method: PUT
         name: completeblobupload
         description: Complete a blob upload
         call: open-container-initiative.completeblobupload
+        with:
+          digest: rest.digest
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/blobs/uploads/{reference}
-      name: cancelblobupload
-      operations:
       - method: DELETE
         name: cancelblobupload
         description: Cancel a blob upload
@@ -267,8 +265,34 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/manifests/{reference}
-      name: getmanifest
+    - path: /v1/v2/{name}/blobs/{digest}
+      name: v2-name-blobs-digest
+      description: REST surface for v2-name-blobs-digest.
+      operations:
+      - method: GET
+        name: getblob
+        description: Retrieve a blob
+        call: open-container-initiative.getblob
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: HEAD
+        name: headblob
+        description: Check whether a blob exists
+        call: open-container-initiative.headblob
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteblob
+        description: Delete a blob
+        call: open-container-initiative.deleteblob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/{name}/manifests/{reference}
+      name: v2-name-manifests-reference
+      description: REST surface for v2-name-manifests-reference.
       operations:
       - method: GET
         name: getmanifest
@@ -277,19 +301,22 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/manifests/{reference}
-      name: putmanifest
-      operations:
+      - method: HEAD
+        name: headmanifest
+        description: Check whether a manifest exists
+        call: open-container-initiative.headmanifest
+        outputParameters:
+        - type: object
+          mapping: $.
       - method: PUT
         name: putmanifest
         description: Push a manifest
         call: open-container-initiative.putmanifest
+        with:
+          tag: rest.tag
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/manifests/{reference}
-      name: deletemanifest
-      operations:
       - method: DELETE
         name: deletemanifest
         description: Delete a manifest
@@ -297,33 +324,41 @@ capability:
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v2/{name}/tags/list
-      name: listtags
-      operations:
-      - method: GET
-        name: listtags
-        description: List tags in a repository
-        call: open-container-initiative.listtags
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v2/{name}/referrers/{digest}
-      name: listreferrers
+    - path: /v1/v2/{name}/referrers/{digest}
+      name: v2-name-referrers-digest
+      description: REST surface for v2-name-referrers-digest.
       operations:
       - method: GET
         name: listreferrers
         description: List referrers for a manifest
         call: open-container-initiative.listreferrers
+        with:
+          artifactType: rest.artifactType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/{name}/tags/list
+      name: v2-name-tags-list
+      description: REST surface for v2-name-tags-list.
+      operations:
+      - method: GET
+        name: listtags
+        description: List tags in a repository
+        call: open-container-initiative.listtags
+        with:
+          n: rest.n
+          last: rest.last
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
-    port: 9090
     namespace: open-container-initiative-mcp
+    port: 9090
     transport: http
-    description: MCP adapter for OCI Distribution Specification for AI agent use.
+    description: MCP adapter for OCI Distribution Specification. One tool per consumed operation, routed inline through this
+      capability's consumes block.
     tools:
-    - name: checkversion
+    - name: api-version-check
       description: API version check
       hints:
         readOnly: true
@@ -333,27 +368,7 @@ capability:
       outputParameters:
       - type: object
         mapping: $.
-    - name: getblob
-      description: Retrieve a blob
-      hints:
-        readOnly: true
-        destructive: false
-        idempotent: true
-      call: open-container-initiative.getblob
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: deleteblob
-      description: Delete a blob
-      hints:
-        readOnly: false
-        destructive: true
-        idempotent: true
-      call: open-container-initiative.deleteblob
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: initiateblobupload
+    - name: initiate-blob-upload
       description: Initiate a blob upload
       hints:
         readOnly: false
@@ -364,20 +379,10 @@ capability:
         digest: tools.digest
         mount: tools.mount
         from: tools.from
-      inputParameters:
-      - name: digest
-        type: string
-        description: When supplied, performs a monolithic upload with this digest.
-      - name: mount
-        type: string
-        description: Digest of a blob to mount from another repository.
-      - name: from
-        type: string
-        description: Source repository name to mount the blob from.
       outputParameters:
       - type: object
         mapping: $.
-    - name: getblobuploadstatus
+    - name: get-blob-upload-status
       description: Get blob upload status
       hints:
         readOnly: true
@@ -387,17 +392,17 @@ capability:
       outputParameters:
       - type: object
         mapping: $.
-    - name: uploadblobchunk
+    - name: upload-blob-chunk
       description: Upload a blob chunk
       hints:
         readOnly: false
         destructive: false
-        idempotent: false
+        idempotent: true
       call: open-container-initiative.uploadblobchunk
       outputParameters:
       - type: object
         mapping: $.
-    - name: completeblobupload
+    - name: complete-blob-upload
       description: Complete a blob upload
       hints:
         readOnly: false
@@ -406,15 +411,10 @@ capability:
       call: open-container-initiative.completeblobupload
       with:
         digest: tools.digest
-      inputParameters:
-      - name: digest
-        type: string
-        description: The digest of the completed blob.
-        required: true
       outputParameters:
       - type: object
         mapping: $.
-    - name: cancelblobupload
+    - name: cancel-blob-upload
       description: Cancel a blob upload
       hints:
         readOnly: false
@@ -424,7 +424,37 @@ capability:
       outputParameters:
       - type: object
         mapping: $.
-    - name: getmanifest
+    - name: retrieve-blob
+      description: Retrieve a blob
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.getblob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-whether-blob-exists
+      description: Check whether a blob exists
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: open-container-initiative.headblob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-blob
+      description: Delete a blob
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: open-container-initiative.deleteblob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-manifest
       description: Retrieve a manifest
       hints:
         readOnly: true
@@ -434,7 +464,17 @@ capability:
       outputParameters:
       - type: object
         mapping: $.
-    - name: putmanifest
+    - name: check-whether-manifest-exists
+      description: Check whether a manifest exists
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: open-container-initiative.headmanifest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: push-manifest
       description: Push a manifest
       hints:
         readOnly: false
@@ -443,14 +483,10 @@ capability:
       call: open-container-initiative.putmanifest
       with:
         tag: tools.tag
-      inputParameters:
-      - name: tag
-        type: array
-        description: Optional tags to assign when pushing by digest.
       outputParameters:
       - type: object
         mapping: $.
-    - name: deletemanifest
+    - name: delete-manifest
       description: Delete a manifest
       hints:
         readOnly: false
@@ -460,7 +496,19 @@ capability:
       outputParameters:
       - type: object
         mapping: $.
-    - name: listtags
+    - name: list-referrers-manifest
+      description: List referrers for a manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-container-initiative.listreferrers
+      with:
+        artifactType: tools.artifactType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-tags-repository
       description: List tags in a repository
       hints:
         readOnly: true
@@ -470,29 +518,6 @@ capability:
       with:
         n: tools.n
         last: tools.last
-      inputParameters:
-      - name: n
-        type: integer
-        description: Maximum number of tags to return.
-      - name: last
-        type: string
-        description: Tag name to start listing after, for pagination.
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: listreferrers
-      description: List referrers for a manifest
-      hints:
-        readOnly: true
-        destructive: false
-        idempotent: true
-      call: open-container-initiative.listreferrers
-      with:
-        artifactType: tools.artifactType
-      inputParameters:
-      - name: artifactType
-        type: string
-        description: Filter referrers by artifact type.
       outputParameters:
       - type: object
         mapping: $.
