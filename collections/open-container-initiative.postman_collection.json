@@ -1,0 +1,2008 @@
+{
+  "item": [
+    {
+      "id": "e66ada73-397b-4959-9215-f90b9c90a7b3",
+      "name": "API version check",
+      "request": {
+        "name": "API version check",
+        "description": {
+          "content": "Check whether the registry implements the OCI Distribution Specification.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "dfe70bf9-2bb6-4b2e-af2e-29c95b7873ea",
+          "name": "Registry implements the specification.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0e064387-f432-40e0-921c-03d7440df16a",
+          "name": "Authentication required.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5796854b-2428-46b4-940f-3fe398ed86c1",
+      "name": "Retrieve a blob",
+      "request": {
+        "name": "Retrieve a blob",
+        "description": {
+          "content": "Fetch the binary content of a blob by digest.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            ":digest"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "digest",
+              "description": "(Required) A content-addressable digest such as sha256:abcd..."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "617f5b9c-08de-469c-9cf5-83f976b24f50",
+          "name": "Blob content returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "15a5b73e-0960-44cb-8e0e-147b680e4b38",
+          "name": "Blob not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c5100e3d-9c74-41c9-8ffc-0f53970f3426",
+      "name": "Check whether a blob exists",
+      "request": {
+        "name": "Check whether a blob exists",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            ":digest"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "digest",
+              "description": "(Required) A content-addressable digest such as sha256:abcd..."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "HEAD",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a2a5e91f-c37b-4948-9c60-bbb4e1bec505",
+          "name": "Blob exists.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "HEAD",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1b874485-ccd2-4529-8615-b26c0125b494",
+          "name": "Blob not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "HEAD",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d6eeb006-b002-401d-80b6-def10e40079e",
+      "name": "Delete a blob",
+      "request": {
+        "name": "Delete a blob",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            ":digest"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "digest",
+              "description": "(Required) A content-addressable digest such as sha256:abcd..."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b5262842-3e80-4c19-83f3-790be8df58c0",
+          "name": "Blob deleted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "00d8adbb-fcd9-40c2-9df5-f0ffafa64aa9",
+          "name": "Blob not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "02365f19-2a9c-47ba-adc1-64648696ee07",
+      "name": "Initiate a blob upload",
+      "request": {
+        "name": "Initiate a blob upload",
+        "description": {
+          "content": "Begin a new blob upload session. Use the digest query parameter for a single-request monolithic upload, or mount and from to mount a blob from another repository.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            "uploads",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "digest",
+              "value": "<string>",
+              "description": "When supplied, performs a monolithic upload with this digest."
+            },
+            {
+              "disabled": false,
+              "key": "mount",
+              "value": "<string>",
+              "description": "Digest of a blob to mount from another repository."
+            },
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<string>",
+              "description": "Source repository name to mount the blob from."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b92971d9-a9c0-4b68-aa64-4780c59dd22b",
+          "name": "Upload completed (monolithic or mount).",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "digest",
+                  "value": "<string>"
+                },
+                {
+                  "key": "mount",
+                  "value": "<string>"
+                },
+                {
+                  "key": "from",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5058f3b9-9fe6-4be9-ad87-45c5aeb1090a",
+          "name": "Upload session created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "digest",
+                  "value": "<string>"
+                },
+                {
+                  "key": "mount",
+                  "value": "<string>"
+                },
+                {
+                  "key": "from",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "493caa1c-691b-4fac-8248-9cebe8729ba5",
+      "name": "Get blob upload status",
+      "request": {
+        "name": "Get blob upload status",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            "uploads",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) The upload session reference."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "c6ca287e-6d06-4719-8a42-492594a9dff8",
+          "name": "Status returned via headers.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) The upload session reference."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bbc9f6e2-0476-4767-8075-00d8a9944c40",
+      "name": "Upload a blob chunk",
+      "request": {
+        "name": "Upload a blob chunk",
+        "description": {
+          "content": "Stream a chunk of a blob into an active upload session.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            "uploads",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) The upload session reference."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "62161c4a-2256-44fd-abe8-2372978c10cf",
+          "name": "Chunk accepted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) The upload session reference."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "63d856c7-092a-479e-bca0-1eeb881dc2ee",
+      "name": "Complete a blob upload",
+      "request": {
+        "name": "Complete a blob upload",
+        "description": {
+          "content": "Finalize an upload session by providing the digest.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            "uploads",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "digest",
+              "value": "<string>",
+              "description": "(Required) The digest of the completed blob."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) The upload session reference."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "PUT",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "985dfa1d-c9e1-4972-9588-6af28c99f496",
+          "name": "Blob upload completed.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "digest",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) The upload session reference."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3629262b-effd-45c9-9fbe-720764e9b6eb",
+      "name": "Cancel a blob upload",
+      "request": {
+        "name": "Cancel a blob upload",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "blobs",
+            "uploads",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) The upload session reference."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "600d9dc2-aa3e-43b0-a8cb-cbffa9ad2583",
+          "name": "Upload cancelled.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "blobs",
+                "uploads",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) The upload session reference."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "34b96331-6397-4049-a500-1018375ac4a6",
+      "name": "Retrieve a manifest",
+      "request": {
+        "name": "Retrieve a manifest",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "manifests",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) A tag or digest identifying a manifest."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "073d62ea-3547-4602-b944-f42d5d6556b0",
+          "name": "Manifest returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d3bb7579-c1ab-41e4-a1a2-41051d78e910",
+          "name": "Manifest not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2f19e241-98e3-4181-8b02-202b6d42fb05",
+      "name": "Check whether a manifest exists",
+      "request": {
+        "name": "Check whether a manifest exists",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "manifests",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) A tag or digest identifying a manifest."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "HEAD",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ec53a303-3675-4061-967c-2b15c14de976",
+          "name": "Manifest exists.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "HEAD",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ff845ced-3fc5-4d1d-a0d6-7b3a29ffc5aa",
+          "name": "Manifest not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "HEAD",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "692dc8e9-6743-4f11-a677-3c1750d88d51",
+      "name": "Push a manifest",
+      "request": {
+        "name": "Push a manifest",
+        "description": {
+          "content": "Upload or replace a manifest at the given reference (tag or digest).",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "manifests",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "tag",
+              "value": "<string>",
+              "description": "Optional tags to assign when pushing by digest."
+            },
+            {
+              "disabled": false,
+              "key": "tag",
+              "value": "<string>",
+              "description": "Optional tags to assign when pushing by digest."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) A tag or digest identifying a manifest."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "PUT",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a502c42e-e3b3-4639-b1d4-f099a5e85bd0",
+          "name": "Manifest stored.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "<string>"
+                },
+                {
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "98274e1f-9832-4edb-a72d-7e2a9d2d7653",
+      "name": "Delete a manifest",
+      "request": {
+        "name": "Delete a manifest",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "manifests",
+            ":reference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "reference",
+              "description": "(Required) A tag or digest identifying a manifest."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6ad59549-799a-468b-b599-e694aae90e96",
+          "name": "Manifest deleted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bba90a63-56c2-4d35-8112-aeab1ee261b9",
+      "name": "List tags in a repository",
+      "request": {
+        "name": "List tags in a repository",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "tags",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "n",
+              "value": "<integer>",
+              "description": "Maximum number of tags to return."
+            },
+            {
+              "disabled": false,
+              "key": "last",
+              "value": "<string>",
+              "description": "Tag name to start listing after, for pagination."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8d5f92c7-820a-4ba5-9e2a-bf26b383c162",
+          "name": "Tag list returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "tags",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "n",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "last",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e7b41a05-f6a4-459e-8d3a-9c5843d49fbc",
+      "name": "List referrers for a manifest",
+      "request": {
+        "name": "List referrers for a manifest",
+        "description": {
+          "content": "Fetch the list of manifests that reference the supplied digest as their subject.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            ":name",
+            "referrers",
+            ":digest"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "artifactType",
+              "value": "<string>",
+              "description": "Filter referrers by artifact type."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "name",
+              "description": "(Required) The repository name (may contain slashes)."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "digest",
+              "description": "(Required) A content-addressable digest such as sha256:abcd..."
+            },
+            {
+              "description": "The hostname of the registry",
+              "type": "any",
+              "value": "{{registry}}",
+              "key": "registry"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ee274e47-7494-45d0-a18c-a8f52dce9b68",
+          "name": "Index of referrers returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "referrers",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "artifactType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the registry",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "registry.example.com",
+      "key": "registry"
+    },
+    {
+      "type": "string",
+      "value": "https://{{registry}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0279cfcb-432c-4dd6-9fdb-8c8ee58e47ee",
+    "name": "OCI Distribution Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.\n\nContact Support:\n Name: Open Container Initiative",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OCI Distribution Specification",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API version check",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/"
+      },
+      "docs": "Check whether the registry implements the OCI Distribution Specification."
+    },
+    {
+      "info": {
+        "name": "Retrieve a blob",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/:name/blobs/:digest",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "path",
+            "description": "A content-addressable digest such as sha256:abcd..."
+          }
+        ]
+      },
+      "docs": "Fetch the binary content of a blob by digest."
+    },
+    {
+      "info": {
+        "name": "Delete a blob",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{registry}/v2/:name/blobs/:digest",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "path",
+            "description": "A content-addressable digest such as sha256:abcd..."
+          }
+        ]
+      },
+      "docs": "Delete a blob"
+    },
+    {
+      "info": {
+        "name": "Check whether a blob exists",
+        "type": "http"
+      },
+      "http": {
+        "method": "HEAD",
+        "url": "https://{registry}/v2/:name/blobs/:digest",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "path",
+            "description": "A content-addressable digest such as sha256:abcd..."
+          }
+        ]
+      },
+      "docs": "Check whether a blob exists"
+    },
+    {
+      "info": {
+        "name": "Initiate a blob upload",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{registry}/v2/:name/blobs/uploads/",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "query",
+            "description": "When supplied, performs a monolithic upload with this digest."
+          },
+          {
+            "name": "mount",
+            "value": "",
+            "type": "query",
+            "description": "Digest of a blob to mount from another repository."
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Source repository name to mount the blob from."
+          }
+        ]
+      },
+      "docs": "Begin a new blob upload session. Use the digest query parameter for a single-request monolithic upload, or mount and from to mount a blob from another repository."
+    },
+    {
+      "info": {
+        "name": "Get blob upload status",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "The upload session reference."
+          }
+        ]
+      },
+      "docs": "Get blob upload status"
+    },
+    {
+      "info": {
+        "name": "Complete a blob upload",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "The upload session reference."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "query",
+            "description": "The digest of the completed blob."
+          }
+        ]
+      },
+      "docs": "Finalize an upload session by providing the digest."
+    },
+    {
+      "info": {
+        "name": "Upload a blob chunk",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "The upload session reference."
+          }
+        ]
+      },
+      "docs": "Stream a chunk of a blob into an active upload session."
+    },
+    {
+      "info": {
+        "name": "Cancel a blob upload",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "The upload session reference."
+          }
+        ]
+      },
+      "docs": "Cancel a blob upload"
+    },
+    {
+      "info": {
+        "name": "Retrieve a manifest",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/:name/manifests/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "A tag or digest identifying a manifest."
+          }
+        ]
+      },
+      "docs": "Retrieve a manifest"
+    },
+    {
+      "info": {
+        "name": "Push a manifest",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{registry}/v2/:name/manifests/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "A tag or digest identifying a manifest."
+          },
+          {
+            "name": "tag",
+            "value": "",
+            "type": "query",
+            "description": "Optional tags to assign when pushing by digest."
+          }
+        ]
+      },
+      "docs": "Upload or replace a manifest at the given reference (tag or digest)."
+    },
+    {
+      "info": {
+        "name": "Delete a manifest",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{registry}/v2/:name/manifests/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "A tag or digest identifying a manifest."
+          }
+        ]
+      },
+      "docs": "Delete a manifest"
+    },
+    {
+      "info": {
+        "name": "Check whether a manifest exists",
+        "type": "http"
+      },
+      "http": {
+        "method": "HEAD",
+        "url": "https://{registry}/v2/:name/manifests/:reference",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "A tag or digest identifying a manifest."
+          }
+        ]
+      },
+      "docs": "Check whether a manifest exists"
+    },
+    {
+      "info": {
+        "name": "List tags in a repository",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/:name/tags/list",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "n",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of tags to return."
+          },
+          {
+            "name": "last",
+            "value": "",
+            "type": "query",
+            "description": "Tag name to start listing after, for pagination."
+          }
+        ]
+      },
+      "docs": "List tags in a repository"
+    },
+    {
+      "info": {
+        "name": "List referrers for a manifest",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{registry}/v2/:name/referrers/:digest",
+        "params": [
+          {
+            "name": "name",
+            "value": "",
+            "type": "path",
+            "description": "The repository name (may contain slashes)."
+          },
+          {
+            "name": "digest",
+            "value": "",
+            "type": "path",
+            "description": "A content-addressable digest such as sha256:abcd..."
+          },
+          {
+            "name": "artifactType",
+            "value": "",
+            "type": "query",
+            "description": "Filter referrers by artifact type."
+          }
+        ]
+      },
+      "docs": "Fetch the list of manifests that reference the supplied digest as their subject."
+    }
+  ],
+  "bundled": true
+}
