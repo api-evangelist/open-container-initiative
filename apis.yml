@@ -4,7 +4,7 @@ description: >-
   The Open Container Initiative (OCI) is an open governance structure for creating open industry standards around
   container formats and runtimes, hosted under the Linux Foundation.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Cloud Native
   - Containers
