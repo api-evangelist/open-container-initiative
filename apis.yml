@@ -35,6 +35,8 @@ apis:
       - type: OpenAPI
         url: openapi/open-container-initiative-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/open-container-initiative-agentic-access.yml
   - type: DomainSecurity
     url: security/open-container-initiative-domain-security.yml
   - type: LinkedIn
