@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: OCI Distribution Specification Blobs Manifests API
+  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.
+  version: 1.1.0
+  contact:
+    name: Open Container Initiative
+    url: https://opencontainers.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{registry}
+  description: An OCI-compliant container registry
+  variables:
+    registry:
+      default: registry.example.com
+      description: The hostname of the registry
+tags:
+- name: Manifests
+paths:
+  /v2/{name}/manifests/{reference}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    - $ref: '#/components/parameters/Reference'
+    get:
+      summary: Retrieve a manifest
+      operationId: getManifest
+      responses:
+        '200':
+          description: Manifest returned.
+        '404':
+          description: Manifest not found.
+      tags:
+      - Manifests
+    head:
+      summary: Check whether a manifest exists
+      operationId: headManifest
+      responses:
+        '200':
+          description: Manifest exists.
+        '404':
+          description: Manifest not found.
+      tags:
+      - Manifests
+    put:
+      summary: Push a manifest
+      description: Upload or replace a manifest at the given reference (tag or digest).
+      operationId: putManifest
+      parameters:
+      - name: tag
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: Optional tags to assign when pushing by digest.
+      responses:
+        '201':
+          description: Manifest stored.
+      tags:
+      - Manifests
+    delete:
+      summary: Delete a manifest
+      operationId: deleteManifest
+      responses:
+        '202':
+          description: Manifest deleted.
+      tags:
+      - Manifests
+components:
+  parameters:
+    Reference:
+      name: reference
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A tag or digest identifying a manifest.
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).

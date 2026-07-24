@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Blobs OCI Distribution Specification API
+  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.
+  version: 1.1.0
+  contact:
+    name: Open Container Initiative
+    url: https://opencontainers.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{registry}
+  description: An OCI-compliant container registry
+  variables:
+    registry:
+      default: registry.example.com
+      description: The hostname of the registry
+tags:
+- name: OCI Distribution Specification
+paths:
+  /v2/:
+    get:
+      summary: API version check
+      description: Check whether the registry implements the OCI Distribution Specification.
+      operationId: checkVersion
+      responses:
+        '200':
+          description: Registry implements the specification.
+        '401':
+          description: Authentication required.
+      tags:
+      - OCI Distribution Specification

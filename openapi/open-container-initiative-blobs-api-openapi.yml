@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: OCI Distribution Specification Blobs API
+  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.
+  version: 1.1.0
+  contact:
+    name: Open Container Initiative
+    url: https://opencontainers.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{registry}
+  description: An OCI-compliant container registry
+  variables:
+    registry:
+      default: registry.example.com
+      description: The hostname of the registry
+tags:
+- name: Blobs
+paths:
+  /v2/{name}/blobs/{digest}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    - $ref: '#/components/parameters/Digest'
+    get:
+      summary: Retrieve a blob
+      description: Fetch the binary content of a blob by digest.
+      operationId: getBlob
+      responses:
+        '200':
+          description: Blob content returned.
+        '404':
+          description: Blob not found.
+      tags:
+      - Blobs
+    head:
+      summary: Check whether a blob exists
+      operationId: headBlob
+      responses:
+        '200':
+          description: Blob exists.
+        '404':
+          description: Blob not found.
+      tags:
+      - Blobs
+    delete:
+      summary: Delete a blob
+      operationId: deleteBlob
+      responses:
+        '202':
+          description: Blob deleted.
+        '404':
+          description: Blob not found.
+      tags:
+      - Blobs
+  /v2/{name}/blobs/uploads/:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    post:
+      summary: Initiate a blob upload
+      description: Begin a new blob upload session. Use the digest query parameter for a single-request monolithic upload, or mount and from to mount a blob from another repository.
+      operationId: initiateBlobUpload
+      parameters:
+      - name: digest
+        in: query
+        schema:
+          type: string
+        description: When supplied, performs a monolithic upload with this digest.
+      - name: mount
+        in: query
+        schema:
+          type: string
+        description: Digest of a blob to mount from another repository.
+      - name: from
+        in: query
+        schema:
+          type: string
+        description: Source repository name to mount the blob from.
+      responses:
+        '201':
+          description: Upload completed (monolithic or mount).
+        '202':
+          description: Upload session created.
+      tags:
+      - Blobs
+  /v2/{name}/blobs/uploads/{reference}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    - name: reference
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The upload session reference.
+    get:
+      summary: Get blob upload status
+      operationId: getBlobUploadStatus
+      responses:
+        '204':
+          description: Status returned via headers.
+      tags:
+      - Blobs
+    patch:
+      summary: Upload a blob chunk
+      description: Stream a chunk of a blob into an active upload session.
+      operationId: uploadBlobChunk
+      responses:
+        '202':
+          description: Chunk accepted.
+      tags:
+      - Blobs
+    put:
+      summary: Complete a blob upload
+      description: Finalize an upload session by providing the digest.
+      operationId: completeBlobUpload
+      parameters:
+      - name: digest
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The digest of the completed blob.
+      responses:
+        '201':
+          description: Blob upload completed.
+      tags:
+      - Blobs
+    delete:
+      summary: Cancel a blob upload
+      operationId: cancelBlobUpload
+      responses:
+        '204':
+          description: Upload cancelled.
+      tags:
+      - Blobs
+components:
+  parameters:
+    Digest:
+      name: digest
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A content-addressable digest such as sha256:abcd...
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).

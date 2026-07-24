@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: OCI Distribution Specification Blobs Referrers API
+  description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.
+  version: 1.1.0
+  contact:
+    name: Open Container Initiative
+    url: https://opencontainers.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{registry}
+  description: An OCI-compliant container registry
+  variables:
+    registry:
+      default: registry.example.com
+      description: The hostname of the registry
+tags:
+- name: Referrers
+paths:
+  /v2/{name}/referrers/{digest}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    - $ref: '#/components/parameters/Digest'
+    get:
+      summary: List referrers for a manifest
+      description: Fetch the list of manifests that reference the supplied digest as their subject.
+      operationId: listReferrers
+      parameters:
+      - name: artifactType
+        in: query
+        schema:
+          type: string
+        description: Filter referrers by artifact type.
+      responses:
+        '200':
+          description: Index of referrers returned.
+      tags:
+      - Referrers
+components:
+  parameters:
+    Digest:
+      name: digest
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A content-addressable digest such as sha256:abcd...
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).
