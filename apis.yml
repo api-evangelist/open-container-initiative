@@ -4,7 +4,19 @@ description: >-
   The Open Container Initiative (OCI) is an open governance structure for creating open industry standards around
   container formats and runtimes, hosted under the Linux Foundation.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/open-container-initiative.png
 tags:
   - Cloud Native
   - Containers
@@ -16,24 +28,73 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: open-container-initiative:open-container-initiative
-    name: Open Container Initiative
-    description: >-
-      The Open Container Initiative (OCI) is an open governance structure for creating open industry standards around
-      container formats and runtimes, including the Runtime Specification, Image Specification, and Distribution
-      Specification.
-    humanURL: https://opencontainers.org/
-    tags:
-      - Containers
-      - OCI
-      - Standards
-    properties:
-      - type: Documentation
-        url: https://opencontainers.org/about/overview/
-      - type: GettingStarted
-        url: https://opencontainers.org/community/overview/
-      - type: OpenAPI
-        url: openapi/open-container-initiative-openapi.yml
+- aid: open-container-initiative:open-container-initiative-blobs-api
+  name: Open Container Initiative Blobs API
+  description: The Blobs API from Open Container Initiative — 3 operation(s) for blobs.
+  humanURL: https://opencontainers.org/
+  tags:
+  - Blobs
+  properties:
+  - type: OpenAPI
+    url: openapi/open-container-initiative-blobs-api-openapi.yml
+  - type: Documentation
+    url: https://opencontainers.org/about/overview/
+  - type: GettingStarted
+    url: https://opencontainers.org/community/overview/
+- aid: open-container-initiative:open-container-initiative-manifests-api
+  name: Open Container Initiative Manifests API
+  description: The Manifests API from Open Container Initiative — 1 operation(s) for manifests.
+  humanURL: https://opencontainers.org/
+  tags:
+  - Manifests
+  properties:
+  - type: OpenAPI
+    url: openapi/open-container-initiative-manifests-api-openapi.yml
+  - type: Documentation
+    url: https://opencontainers.org/about/overview/
+  - type: GettingStarted
+    url: https://opencontainers.org/community/overview/
+- aid: open-container-initiative:open-container-initiative-oci-distribution-specification-api
+  name: Open Container Initiative OCI Distribution Specification API
+  description: >-
+    The OCI Distribution Specification API from Open Container Initiative — 1 operation(s) for oci distribution
+    specification.
+  humanURL: https://opencontainers.org/
+  tags:
+  - OCI Distribution Specification
+  properties:
+  - type: OpenAPI
+    url: openapi/open-container-initiative-oci-distribution-specification-api-openapi.yml
+  - type: Documentation
+    url: https://opencontainers.org/about/overview/
+  - type: GettingStarted
+    url: https://opencontainers.org/community/overview/
+- aid: open-container-initiative:open-container-initiative-referrers-api
+  name: Open Container Initiative Referrers API
+  description: The Referrers API from Open Container Initiative — 1 operation(s) for referrers.
+  humanURL: https://opencontainers.org/
+  tags:
+  - Referrers
+  properties:
+  - type: OpenAPI
+    url: openapi/open-container-initiative-referrers-api-openapi.yml
+  - type: Documentation
+    url: https://opencontainers.org/about/overview/
+  - type: GettingStarted
+    url: https://opencontainers.org/community/overview/
+- aid: open-container-initiative:open-container-initiative-tags-api
+  name: Open Container Initiative Tags API
+  description: The Tags API from Open Container Initiative — 1 operation(s) for tags.
+  humanURL: https://opencontainers.org/
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/open-container-initiative-tags-api-openapi.yml
+  - type: Documentation
+    url: https://opencontainers.org/about/overview/
+  - type: GettingStarted
+    url: https://opencontainers.org/community/overview/
 common:
   - type: AgenticAccess
     url: agentic-access/open-container-initiative-agentic-access.yml
