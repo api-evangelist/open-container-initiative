@@ -1,0 +1,22 @@
+{
+  "provider": "open-container-initiative",
+  "sources": [
+    "open-container-initiative-blobs-api-openapi.yml",
+    "open-container-initiative-manifests-api-openapi.yml",
+    "open-container-initiative-oci-distribution-specification-api-openapi.yml",
+    "open-container-initiative-referrers-api-openapi.yml",
+    "open-container-initiative-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "open-container-initiative-blobs-api-openapi.yml",
+    "open-container-initiative-manifests-api-openapi.yml",
+    "open-container-initiative-oci-distribution-specification-api-openapi.yml",
+    "open-container-initiative-referrers-api-openapi.yml",
+    "open-container-initiative-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

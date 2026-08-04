@@ -1,0 +1,236 @@
+openapi: 3.1.0
+info:
+  title: OCI Distribution Specification
+  description: >-
+    The Open Container Initiative Distribution Specification standardizes the
+    HTTP API for distributing container images and other content. Registries
+    that implement this specification expose endpoints for managing blobs,
+    manifests, tags, and referrers under the /v2/ namespace.
+  version: 1.1.0
+  contact:
+    name: Open Container Initiative
+    url: https://opencontainers.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{registry}
+    description: An OCI-compliant container registry
+    variables:
+      registry:
+        default: registry.example.com
+        description: The hostname of the registry
+paths:
+  /v2/:
+    get:
+      summary: API version check
+      description: Check whether the registry implements the OCI Distribution Specification.
+      operationId: checkVersion
+      responses:
+        '200':
+          description: Registry implements the specification.
+        '401':
+          description: Authentication required.
+  /v2/{name}/blobs/{digest}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+      - $ref: '#/components/parameters/Digest'
+    get:
+      summary: Retrieve a blob
+      description: Fetch the binary content of a blob by digest.
+      operationId: getBlob
+      responses:
+        '200':
+          description: Blob content returned.
+        '404':
+          description: Blob not found.
+    head:
+      summary: Check whether a blob exists
+      operationId: headBlob
+      responses:
+        '200':
+          description: Blob exists.
+        '404':
+          description: Blob not found.
+    delete:
+      summary: Delete a blob
+      operationId: deleteBlob
+      responses:
+        '202':
+          description: Blob deleted.
+        '404':
+          description: Blob not found.
+  /v2/{name}/blobs/uploads/:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    post:
+      summary: Initiate a blob upload
+      description: >-
+        Begin a new blob upload session. Use the digest query parameter for a
+        single-request monolithic upload, or mount and from to mount a blob
+        from another repository.
+      operationId: initiateBlobUpload
+      parameters:
+        - name: digest
+          in: query
+          schema:
+            type: string
+          description: When supplied, performs a monolithic upload with this digest.
+        - name: mount
+          in: query
+          schema:
+            type: string
+          description: Digest of a blob to mount from another repository.
+        - name: from
+          in: query
+          schema:
+            type: string
+          description: Source repository name to mount the blob from.
+      responses:
+        '201':
+          description: Upload completed (monolithic or mount).
+        '202':
+          description: Upload session created.
+  /v2/{name}/blobs/uploads/{reference}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+      - name: reference
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The upload session reference.
+    get:
+      summary: Get blob upload status
+      operationId: getBlobUploadStatus
+      responses:
+        '204':
+          description: Status returned via headers.
+    patch:
+      summary: Upload a blob chunk
+      description: Stream a chunk of a blob into an active upload session.
+      operationId: uploadBlobChunk
+      responses:
+        '202':
+          description: Chunk accepted.
+    put:
+      summary: Complete a blob upload
+      description: Finalize an upload session by providing the digest.
+      operationId: completeBlobUpload
+      parameters:
+        - name: digest
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The digest of the completed blob.
+      responses:
+        '201':
+          description: Blob upload completed.
+    delete:
+      summary: Cancel a blob upload
+      operationId: cancelBlobUpload
+      responses:
+        '204':
+          description: Upload cancelled.
+  /v2/{name}/manifests/{reference}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+      - $ref: '#/components/parameters/Reference'
+    get:
+      summary: Retrieve a manifest
+      operationId: getManifest
+      responses:
+        '200':
+          description: Manifest returned.
+        '404':
+          description: Manifest not found.
+    head:
+      summary: Check whether a manifest exists
+      operationId: headManifest
+      responses:
+        '200':
+          description: Manifest exists.
+        '404':
+          description: Manifest not found.
+    put:
+      summary: Push a manifest
+      description: Upload or replace a manifest at the given reference (tag or digest).
+      operationId: putManifest
+      parameters:
+        - name: tag
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+          description: Optional tags to assign when pushing by digest.
+      responses:
+        '201':
+          description: Manifest stored.
+    delete:
+      summary: Delete a manifest
+      operationId: deleteManifest
+      responses:
+        '202':
+          description: Manifest deleted.
+  /v2/{name}/tags/list:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      summary: List tags in a repository
+      operationId: listTags
+      parameters:
+        - name: 'n'
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of tags to return.
+        - name: last
+          in: query
+          schema:
+            type: string
+          description: Tag name to start listing after, for pagination.
+      responses:
+        '200':
+          description: Tag list returned.
+  /v2/{name}/referrers/{digest}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+      - $ref: '#/components/parameters/Digest'
+    get:
+      summary: List referrers for a manifest
+      description: Fetch the list of manifests that reference the supplied digest as their subject.
+      operationId: listReferrers
+      parameters:
+        - name: artifactType
+          in: query
+          schema:
+            type: string
+          description: Filter referrers by artifact type.
+      responses:
+        '200':
+          description: Index of referrers returned.
+components:
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).
+    Digest:
+      name: digest
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A content-addressable digest such as sha256:abcd...
+    Reference:
+      name: reference
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A tag or digest identifying a manifest.
