@@ -1,0 +1,584 @@
+{
+  "item": [
+    {
+      "id": "df951617-7ad9-47b3-b4cc-6107dfb41e0d",
+      "name": "Manifests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a7ba4d0-514f-4d3d-9233-a84c6620906f",
+          "name": "Retrieve a manifest",
+          "request": {
+            "name": "Retrieve a manifest",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c70a7f18-5070-4e4b-afca-ec1adbe6827d",
+              "name": "Manifest returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5db65541-e4cd-4e1d-9700-e641e4890ae8",
+              "name": "Manifest not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a3a5c1d-3128-4b7d-9640-eefc161f17a1",
+          "name": "Check whether a manifest exists",
+          "request": {
+            "name": "Check whether a manifest exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8617a0ce-11fd-4ab2-8133-0c714fa50ecc",
+              "name": "Manifest exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9c4c9e6-2809-4376-9145-9e2b31f2f8c6",
+              "name": "Manifest not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d74bc61-7f2e-474c-8d33-f47cc7fb9e36",
+          "name": "Push a manifest",
+          "request": {
+            "name": "Push a manifest",
+            "description": {
+              "content": "Upload or replace a manifest at the given reference (tag or digest).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Optional tags to assign when pushing by digest."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Optional tags to assign when pushing by digest."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a4e7e3e-5670-4f5f-9b52-14b86fa94b27",
+              "name": "Manifest stored.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00423090-52f3-43ff-b4ea-0a66ddf875e6",
+          "name": "Delete a manifest",
+          "request": {
+            "name": "Delete a manifest",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "manifests",
+                ":reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reference",
+                  "description": "(Required) A tag or digest identifying a manifest."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a502d33e-6f70-4ed6-95f8-768d9803fdd7",
+              "name": "Manifest deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "manifests",
+                    ":reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reference",
+                      "description": "(Required) A tag or digest identifying a manifest."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the registry",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "registry.example.com",
+      "key": "registry"
+    },
+    {
+      "type": "string",
+      "value": "https://{{registry}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "19780a38-c87c-437b-8d69-bbdac4d5cea9",
+    "name": "OCI Distribution Specification Blobs Manifests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.\n\nContact Support:\n Name: Open Container Initiative",
+      "type": "text/plain"
+    }
+  }
+}

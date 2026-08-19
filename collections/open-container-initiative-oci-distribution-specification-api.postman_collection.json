@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "6ddbf2e8-0d43-447a-bd66-7a7d3cb90513",
+      "name": "OCI Distribution Specification",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4604de0-35cc-43fb-9f73-0ae5b703a377",
+          "name": "API version check",
+          "request": {
+            "name": "API version check",
+            "description": {
+              "content": "Check whether the registry implements the OCI Distribution Specification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "466bcfdc-6450-4d88-af12-7a4b2301ac23",
+              "name": "Registry implements the specification.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8da0ee8-dcf4-46cf-b3df-51bcbbef84e9",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the registry",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "registry.example.com",
+      "key": "registry"
+    },
+    {
+      "type": "string",
+      "value": "https://{{registry}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "741e70e2-dffb-4cf0-a9cf-cc52b40771c4",
+    "name": "Blobs OCI Distribution Specification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.\n\nContact Support:\n Name: Open Container Initiative",
+      "type": "text/plain"
+    }
+  }
+}

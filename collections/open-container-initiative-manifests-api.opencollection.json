@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OCI Distribution Specification Blobs Manifests API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{registry}/v2/:name/manifests/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "A tag or digest identifying a manifest."
+              }
+            ]
+          },
+          "docs": "Retrieve a manifest"
+        },
+        {
+          "info": {
+            "name": "Push a manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{registry}/v2/:name/manifests/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "A tag or digest identifying a manifest."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Optional tags to assign when pushing by digest."
+              }
+            ]
+          },
+          "docs": "Upload or replace a manifest at the given reference (tag or digest)."
+        },
+        {
+          "info": {
+            "name": "Delete a manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{registry}/v2/:name/manifests/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "A tag or digest identifying a manifest."
+              }
+            ]
+          },
+          "docs": "Delete a manifest"
+        },
+        {
+          "info": {
+            "name": "Check whether a manifest exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://{registry}/v2/:name/manifests/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "A tag or digest identifying a manifest."
+              }
+            ]
+          },
+          "docs": "Check whether a manifest exists"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OCI Distribution Specification Blobs Referrers API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Referrers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List referrers for a manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{registry}/v2/:name/referrers/:digest",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path",
+                "description": "A content-addressable digest such as sha256:abcd..."
+              },
+              {
+                "name": "artifactType",
+                "value": "",
+                "type": "query",
+                "description": "Filter referrers by artifact type."
+              }
+            ]
+          },
+          "docs": "Fetch the list of manifests that reference the supplied digest as their subject."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

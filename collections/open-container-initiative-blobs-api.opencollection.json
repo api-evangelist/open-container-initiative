@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OCI Distribution Specification Blobs API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{registry}/v2/:name/blobs/:digest",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path",
+                "description": "A content-addressable digest such as sha256:abcd..."
+              }
+            ]
+          },
+          "docs": "Fetch the binary content of a blob by digest."
+        },
+        {
+          "info": {
+            "name": "Delete a blob",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{registry}/v2/:name/blobs/:digest",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path",
+                "description": "A content-addressable digest such as sha256:abcd..."
+              }
+            ]
+          },
+          "docs": "Delete a blob"
+        },
+        {
+          "info": {
+            "name": "Check whether a blob exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://{registry}/v2/:name/blobs/:digest",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path",
+                "description": "A content-addressable digest such as sha256:abcd..."
+              }
+            ]
+          },
+          "docs": "Check whether a blob exists"
+        },
+        {
+          "info": {
+            "name": "Initiate a blob upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{registry}/v2/:name/blobs/uploads/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "query",
+                "description": "When supplied, performs a monolithic upload with this digest."
+              },
+              {
+                "name": "mount",
+                "value": "",
+                "type": "query",
+                "description": "Digest of a blob to mount from another repository."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Source repository name to mount the blob from."
+              }
+            ]
+          },
+          "docs": "Begin a new blob upload session. Use the digest query parameter for a single-request monolithic upload, or mount and from to mount a blob from another repository."
+        },
+        {
+          "info": {
+            "name": "Get blob upload status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "The upload session reference."
+              }
+            ]
+          },
+          "docs": "Get blob upload status"
+        },
+        {
+          "info": {
+            "name": "Complete a blob upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "The upload session reference."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "query",
+                "description": "The digest of the completed blob."
+              }
+            ]
+          },
+          "docs": "Finalize an upload session by providing the digest."
+        },
+        {
+          "info": {
+            "name": "Upload a blob chunk",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "The upload session reference."
+              }
+            ]
+          },
+          "docs": "Stream a chunk of a blob into an active upload session."
+        },
+        {
+          "info": {
+            "name": "Cancel a blob upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{registry}/v2/:name/blobs/uploads/:reference",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name (may contain slashes)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path",
+                "description": "The upload session reference."
+              }
+            ]
+          },
+          "docs": "Cancel a blob upload"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

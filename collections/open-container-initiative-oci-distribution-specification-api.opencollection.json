@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Blobs OCI Distribution Specification API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OCI Distribution Specification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "API version check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{registry}/v2/"
+          },
+          "docs": "Check whether the registry implements the OCI Distribution Specification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "3bb7dbe3-996f-4143-8668-fdabce133958",
+      "name": "Referrers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3677400d-339c-41e1-9576-85cb97cfb5df",
+          "name": "List referrers for a manifest",
+          "request": {
+            "name": "List referrers for a manifest",
+            "description": {
+              "content": "Fetch the list of manifests that reference the supplied digest as their subject.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                ":name",
+                "referrers",
+                ":digest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "artifactType",
+                  "value": "<string>",
+                  "description": "Filter referrers by artifact type."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name (may contain slashes)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "digest",
+                  "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                },
+                {
+                  "description": "The hostname of the registry",
+                  "type": "any",
+                  "value": "{{registry}}",
+                  "key": "registry"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f1abc6d-90f3-4ee7-b7cf-d9056ef9d7c1",
+              "name": "Index of referrers returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    ":name",
+                    "referrers",
+                    ":digest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "artifactType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name (may contain slashes)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "digest",
+                      "description": "(Required) A content-addressable digest such as sha256:abcd..."
+                    },
+                    {
+                      "description": "The hostname of the registry",
+                      "type": "any",
+                      "value": "{{registry}}",
+                      "key": "registry"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the registry",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "registry.example.com",
+      "key": "registry"
+    },
+    {
+      "type": "string",
+      "value": "https://{{registry}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f7ae2981-14c5-4314-a50b-be11dfb40b4f",
+    "name": "OCI Distribution Specification Blobs Referrers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.\n\nContact Support:\n Name: Open Container Initiative",
+      "type": "text/plain"
+    }
+  }
+}
