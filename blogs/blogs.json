@@ -2,21 +2,21 @@
   "repo": "open-container-initiative",
   "feeds": [
     {
-      "source": "https://opencontainers.org/posts/index.xml",
-      "feed_url": "https://opencontainers.org/posts/index.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
       "source": "https://github.com/opencontainers",
       "feed_url": "https://github.com/opencontainers",
       "title": "",
       "saved": 0,
       "method": "none"
+    },
+    {
+      "source": "https://opencontainers.org/posts/index.xml",
+      "feed_url": "https://opencontainers.org/posts/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 0,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
