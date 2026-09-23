@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OCI Distribution Specification Blobs Referrers API
+  title: OCI Distribution Specification Referrers API
   description: The Open Container Initiative Distribution Specification standardizes the HTTP API for distributing container images and other content. Registries that implement this specification expose endpoints for managing blobs, manifests, tags, and referrers under the /v2/ namespace.
   version: 1.1.0
   contact:
@@ -40,13 +40,6 @@ paths:
       - Referrers
 components:
   parameters:
-    Digest:
-      name: digest
-      in: path
-      required: true
-      schema:
-        type: string
-      description: A content-addressable digest such as sha256:abcd...
     Name:
       name: name
       in: path
@@ -54,3 +47,10 @@ components:
       schema:
         type: string
       description: The repository name (may contain slashes).
+    Digest:
+      name: digest
+      in: path
+      required: true
+      schema:
+        type: string
+      description: A content-addressable digest such as sha256:abcd...

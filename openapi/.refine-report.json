@@ -1,11 +1,7 @@
 {
   "provider": "open-container-initiative",
   "sources": [
-    "open-container-initiative-blobs-api-openapi.yml",
-    "open-container-initiative-manifests-api-openapi.yml",
-    "open-container-initiative-oci-distribution-specification-api-openapi.yml",
-    "open-container-initiative-referrers-api-openapi.yml",
-    "open-container-initiative-tags-api-openapi.yml"
+    "_original/open-container-initiative-openapi.yml"
   ],
   "outputs": [
     "open-container-initiative-blobs-api-openapi.yml",
@@ -17,6 +13,36 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "open-container-initiative-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/ -> OCI Distribution Specification",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/{name}/blobs/{digest} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths HEAD /v2/{name}/blobs/{digest} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths DELETE /v2/{name}/blobs/{digest} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths POST /v2/{name}/blobs/uploads/ -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/{name}/blobs/uploads/{reference} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths PATCH /v2/{name}/blobs/uploads/{reference} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths PUT /v2/{name}/blobs/uploads/{reference} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths DELETE /v2/{name}/blobs/uploads/{reference} -> Blobs",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/{name}/manifests/{reference} -> Manifests",
+    "open-container-initiative-openapi.yml: tagged paths HEAD /v2/{name}/manifests/{reference} -> Manifests",
+    "open-container-initiative-openapi.yml: tagged paths PUT /v2/{name}/manifests/{reference} -> Manifests",
+    "open-container-initiative-openapi.yml: tagged paths DELETE /v2/{name}/manifests/{reference} -> Manifests",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/{name}/tags/list -> Tags",
+    "open-container-initiative-openapi.yml: tagged paths GET /v2/{name}/referrers/{digest} -> Referrers",
+    "open-container-initiative-openapi.yml: declared missing tag: Blobs",
+    "open-container-initiative-openapi.yml: declared missing tag: Manifests",
+    "open-container-initiative-openapi.yml: declared missing tag: OCI Distribution Specification",
+    "open-container-initiative-openapi.yml: declared missing tag: Referrers",
+    "open-container-initiative-openapi.yml: declared missing tag: Tags",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "open-container-initiative-blobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-container-initiative-manifests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-container-initiative-oci-distribution-specification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-container-initiative-referrers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-container-initiative-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
