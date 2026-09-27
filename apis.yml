@@ -32,7 +32,7 @@ tags:
   - Cloud-Native
   - Containers
   - OCI
-  - Open-Source
+  - Open Source
   - Standards
 tags_raw:
   - Cloud Native
@@ -40,6 +40,7 @@ tags_raw:
   - OCI
   - Open Source
   - Standards
+  - Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/open-container-initiative/refs/heads/main/apis.yml
 created: '2026-03-26'
 modified: '2026-05-19'
