@@ -136,13 +136,6 @@ paths:
       - Blobs
 components:
   parameters:
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The repository name (may contain slashes).
     Digest:
       name: digest
       in: path
@@ -150,3 +143,10 @@ components:
       schema:
         type: string
       description: A content-addressable digest such as sha256:abcd...
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).

@@ -70,13 +70,6 @@ paths:
       - Manifests
 components:
   parameters:
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The repository name (may contain slashes).
     Reference:
       name: reference
       in: path
@@ -84,3 +77,10 @@ components:
       schema:
         type: string
       description: A tag or digest identifying a manifest.
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name (may contain slashes).
